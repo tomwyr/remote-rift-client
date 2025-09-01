@@ -46,4 +46,14 @@ class RemoteRiftApi {
       yield RemoteRiftState.fromJson(jsonDecode(message));
     }
   }
+
+  Future<void> startMatchSearch() async {
+    final url = '$httpBaseUrl/match/search/start';
+    await httpClient.post(Uri.parse(url));
+  }
+
+  Future<void> stopMatchSearch() async {
+    final url = '$httpBaseUrl/match/search/stop';
+    await httpClient.post(Uri.parse(url));
+  }
 }
