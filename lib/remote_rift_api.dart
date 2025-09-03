@@ -47,6 +47,16 @@ class RemoteRiftApi {
     }
   }
 
+  Future<void> createLobby() async {
+    final url = '$httpBaseUrl/lobby/create';
+    await httpClient.post(Uri.parse(url));
+  }
+
+  Future<void> leaveLobby() async {
+    final url = '$httpBaseUrl/lobby/leave';
+    await httpClient.post(Uri.parse(url));
+  }
+
   Future<void> searchMatch() async {
     final url = '$httpBaseUrl/queue/start';
     await httpClient.post(Uri.parse(url));

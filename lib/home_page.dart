@@ -46,16 +46,22 @@ class _HomePageState extends State<HomePage> {
 
               if (_state != null) SizedBox(height: 12),
 
-              if (_state case Lobby(state: GameLobbyState.idle))
-                ElevatedButton(onPressed: api.searchMatch, child: Text('Search')),
+              if (_state case PreGame())
+                ElevatedButton(onPressed: api.createLobby, child: Text('Create lobby')),
+
+              if (_state case Lobby(state: GameLobbyState.idle)) ...[
+                ElevatedButton(onPressed: api.searchMatch, child: Text('Search game')),
+                SizedBox(height: 4),
+                TextButton(onPressed: api.leaveLobby, child: Text('Leave lobby')),
+              ],
 
               if (_state case Lobby(state: GameLobbyState.searching))
-                ElevatedButton(onPressed: api.stopMatchSearch, child: Text('Cancel')),
+                ElevatedButton(onPressed: api.stopMatchSearch, child: Text('Cancel search')),
 
               if (_state case Found(state: GameFoundState.pending)) ...[
-                ElevatedButton(onPressed: api.acceptMatch, child: Text('Accept')),
+                ElevatedButton(onPressed: api.acceptMatch, child: Text('Accept game')),
                 SizedBox(height: 4),
-                TextButton(onPressed: api.declineMatch, child: Text('Decline')),
+                TextButton(onPressed: api.declineMatch, child: Text('Decline game')),
               ],
             ],
           ),
