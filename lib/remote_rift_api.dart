@@ -47,13 +47,23 @@ class RemoteRiftApi {
     }
   }
 
-  Future<void> startMatchSearch() async {
-    final url = '$httpBaseUrl/match/search/start';
+  Future<void> searchMatch() async {
+    final url = '$httpBaseUrl/queue/start';
     await httpClient.post(Uri.parse(url));
   }
 
   Future<void> stopMatchSearch() async {
-    final url = '$httpBaseUrl/match/search/stop';
+    final url = '$httpBaseUrl/queue/stop';
+    await httpClient.post(Uri.parse(url));
+  }
+
+  Future<void> acceptMatch() async {
+    final url = '$httpBaseUrl/queue/accept';
+    await httpClient.post(Uri.parse(url));
+  }
+
+  Future<void> declineMatch() async {
+    final url = '$httpBaseUrl/queue/decline';
     await httpClient.post(Uri.parse(url));
   }
 }
